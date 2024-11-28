@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TaxifyApp.CalculatePage"
+             Title="CalculatePage">
+   <ScrollView>
+        <StackLayout Padding="10" Spacing="20">
+            <Label Text="คำนวณภาษี" 
+                   FontSize="24"
+                   FontAttributes="Bold" 
+                   HorizontalTextAlignment="Center" />
+
+            <!-- กรอกข้อมูลรายได้ -->
+            <Entry x:Name="incomeEntry" 
+                   Placeholder="กรอกรายได้ (บาท)" 
+                   Keyboard="Numeric" 
+                   FontSize="18" />
+
+            <!-- เลือกปีภาษี -->
+            <Button x:Name="selectYearButton" 
+                    Text="เลือกปีภาษี" 
+                    FontSize="18" 
+                    Clicked="OnSelectYearButtonClicked" 
+                    BackgroundColor="#FF0219B0" />
+
+            <StackLayout x:Name="taxYearRadioGroup" 
+                         IsVisible="False" 
+                         Spacing="10">
+                <RadioButton Content="2560" GroupName="TaxYear" Value="2560" CheckedChanged="OnTaxYearChanged" />
+                <RadioButton Content="2561" GroupName="TaxYear" Value="2561" CheckedChanged="OnTaxYearChanged" />
+                <RadioButton Content="2562" GroupName="TaxYear" Value="2562" CheckedChanged="OnTaxYearChanged" />
+                <RadioButton Content="2563" GroupName="TaxYear" Value="2563" CheckedChanged="OnTaxYearChanged" />
+                <RadioButton Content="2564" GroupName="TaxYear" Value="2564" CheckedChanged="OnTaxYearChanged" />
+                <RadioButton Content="2565" GroupName="TaxYear" Value="2565" CheckedChanged="OnTaxYearChanged" />
+                <RadioButton Content="2566" GroupName="TaxYear" Value="2566" CheckedChanged="OnTaxYearChanged" />
+                <RadioButton Content="2567" GroupName="TaxYear" Value="2567" CheckedChanged="OnTaxYearChanged" />
+                <RadioButton Content="2568" GroupName="TaxYear" Value="2568" CheckedChanged="OnTaxYearChanged" />
+            </StackLayout>
+
+            <!-- กลุ่มลดหย่อนภาษีขั้นพื้นฐาน -->
+            <Label Text="รายการลดหย่อนภาษีขั้นพื้นฐาน" FontAttributes="Bold" FontSize="24" TextColor="#FF046509" />
+            <Label Text="ลดหย่อนส่วนตัว (60,000 บาท)" />
+            <Switch x:Name="personalReliefSwitch" IsToggled="True" />
+
+            <Label Text="คู่สมรสที่ไม่มีเงินได้ (60,000 บาท)" />
+            <Switch x:Name="spouseReliefSwitch" />
+
+            <Label Text="จำนวนบุตรในวัยเรียน" />
+            <Entry x:Name="childrenInSchoolEntry" 
+                   Placeholder="บุตรที่อยู่ในวัยเรียน (30,000 บาทต่อคน)" 
+                   Keyboard="Numeric" />
+            
+            <Label Text="บุตรตั้งแต่คนที่ 2 (60,000 บาทต่อคน)" />
+            <Entry x:Name="childrenBornAfter2018Entry" 
+                   Placeholder="จำนวนบุตรเกิดตั้งแต่ปี 2561" 
+                   Keyboard="Numeric" />
+            
+            <Label Text="ค่าฝากครรภ์/คลอดบุตร (สูงสุด 60,000 บาท)" />
+            <Entry x:Name="pregnancyExpenseEntry" 
+                   Placeholder="ค่าฝากครรภ์หรือคลอดบุตร" 
+                   Keyboard="Numeric" />
+            
+            <Label Text="ค่าอุปการะพ่อแม่ (30,000 บาทต่อคน)" />
+            <Entry x:Name="parentsSupportEntry" 
+                   Placeholder="จำนวนพ่อแม่ที่อุปการะ" 
+                   Keyboard="Numeric" />
+            
+            <Label Text="ค่าอุปการะผู้พิการ (60,000 บาทต่อคน)" />
+            <Entry x:Name="disabledSupportEntry" 
+                   Placeholder="จำนวนผู้พิการที่อุปการะ" 
+                   Keyboard="Numeric" />
+            
+            <!-- รายการลดหย่อนภาษีกลุ่มประกัน เงินออม และการลงทุน -->
+              <Label Text="รายการลดหย่อนภาษีกลุ่มประกัน เงินออม และการลงทุน" FontAttributes="Bold" FontSize="24" TextColor="#FF046509"/>
+
+              <Label Text="เบี้ยประกันสุขภาพ" />
+              <Entry x:Name="healthInsuranceEntry" 
+                     Placeholder="เบี้ยประกันสุขภาพ (บาท)" 
+                     Keyboard="Numeric" />
+             
+              <Label Text="เบี้ยประกันชีวิตคู่สมรส" />
+              <Entry x:Name="lifeInsuranceSpouseEntry" 
+                     Placeholder="เบี้ยประกันชีวิตคู่สมรส (บาท)" 
+                     Keyboard="Numeric" />
+              
+              <Label Text="เบี้ยประกันสุขภาพพ่อแม่" />
+              <Entry x:Name="healthInsuranceParentsEntry" 
+                     Placeholder="เบี้ยประกันสุขภาพพ่อแม่ (บาท)" 
+                     Keyboard="Numeric" />
+              
+              <Label Text="เบี้ยประกันชีวิตแบบบำนาญ " />
+              <Entry x:Name="pensionInsuranceEntry" 
+                     Placeholder="เบี้ยประกันชีวิตแบบบำนาญ (บาท)" 
+                     Keyboard="Numeric" />
+              
+              <Label Text="เงินกองทุนสำรองเลี้ยงชีพ " />
+              <Entry x:Name="providentFundEntry" 
+                     Placeholder="เงินกองทุนสำรองเลี้ยงชีพ (บาท)" 
+                     Keyboard="Numeric" />
+
+              <Label Text="เงินสะสมกองทุนการออมแห่งชาติ" />
+              <Entry x:Name="nationalSavingsEntry" 
+                     Placeholder="เงินสะสมกองทุนการออมแห่งชาติ (บาท)" 
+                     Keyboard="Numeric" />
+              
+              <Label Text="ค่าซื้อกองทุน RMF" />
+              <Entry x:Name="rmfFundEntry" 
+                     Placeholder="ค่าซื้อกองทุน RMF (บาท)" 
+                     Keyboard="Numeric" />
+              
+              <Label Text="ค่าซื้อกองทุน SSF" />
+              <Entry x:Name="ssfFundEntry" 
+                     Placeholder="ค่าซื้อกองทุน SSF (บาท)" 
+                     Keyboard="Numeric" />
+              
+              <Label Text="เงินสมทบกองทุนประกันสังคม" />
+              <Entry x:Name="socialSecurityEntry" 
+                     Placeholder="เงินสมทบกองทุนประกันสังคม (บาท)" 
+                     Keyboard="Numeric" />
+              
+              <Label Text="ดอกเบี้ยกู้ซื้อบ้าน" />
+              <Entry x:Name="housingLoanInterestEntry" 
+                     Placeholder="ดอกเบี้ยกู้ซื้อบ้าน (บาท)" 
+                     Keyboard="Numeric" />
+              
+
+              <!-- รายการลดหย่อนภาษีกลุ่มเงินบริจาค -->
+              <Label Text="รายการลดหย่อนภาษีกลุ่มเงินบริจาค" FontAttributes="Bold" FontSize="24" TextColor="#FF046509"/>
+
+              <Label Text="บริจาคเพื่อการศึกษาและอื่นๆ (บาท)" />
+              <Entry x:Name="charityEducationEntry" 
+                     Placeholder="-" 
+                     Keyboard="Numeric" />
+
+              <Label Text="เงินบริจาคทั่วไป" />
+              <Entry x:Name="charityGeneralEntry"
+                     Placeholder="-"
+                     Keyboard="Numeric" />
+              
+
+              <Label Text="เงินบริจาคพรรคการเมือง" />
+              <Entry x:Name="politicalDonationEntry" 
+                     Placeholder="-"
+                     Keyboard="Numeric" />
+              
+
+            <!-- คำนวณ -->
+            <Button Text="คำนวณ" 
+                    FontSize="18" 
+                    BackgroundColor="#FF0219B0" 
+                    TextColor="White" 
+                    Clicked="OnCalculateClicked" />
+
+            <!-- แสดงผลลัพธ์ -->
+            <Label x:Name="resultLabel" 
+                   Text="" 
+                   FontSize="18" 
+                   HorizontalTextAlignment="Center" />
+
+            <Button Text="Save" Clicked="SaveButtonClick" ></Button>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

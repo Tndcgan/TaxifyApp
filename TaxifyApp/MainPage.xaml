@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TaxifyApp.MainPage"
+             Title="Taxify"> 
+
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="30">
+            <Label Text="Taxify"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="Start"
+                   Padding="0,20,0,20"
+                   TextColor="#330033"/> <!-- Change label text color to white for contrast -->
+
+            <Grid ColumnSpacing="30">
+                <!-- Grid มี 2 คอลัมน์ -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!-- ImageButton for รายการ -->
+                 <StackLayout Grid.Row="0"
+                        Grid.Column="0"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center">
+                    <Frame WidthRequest="250"
+                            HeightRequest="250"
+                            CornerRadius="15"
+                            BackgroundColor="#FFCCFF"
+                            HasShadow="True">
+                        <ImageButton Source="item_icon.png"
+                                     WidthRequest="250"
+                                     HeightRequest="250"
+                                     Clicked="OnItemClicked"
+                                     BackgroundColor="Transparent"/>
+                     </Frame>
+
+                </StackLayout>
+
+                <!-- ImageButton for คำนวณ -->
+                <StackLayout Grid.Row="0"
+                        Grid.Column="1"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center">
+                    <Frame WidthRequest="250"
+                            HeightRequest="250"
+                            CornerRadius="15"
+                            BackgroundColor="#CCFFFF"
+                            HasShadow="True">
+                        <ImageButton Source="calculate_icon.png"
+                                     WidthRequest="250"
+                                     HeightRequest="250"
+                                     Clicked="OnCalculateClicked"
+                                     BackgroundColor="Transparent"/>
+                    </Frame>
+
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

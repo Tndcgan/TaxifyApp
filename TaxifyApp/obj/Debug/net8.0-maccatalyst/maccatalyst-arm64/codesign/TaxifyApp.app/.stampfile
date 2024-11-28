@@ -1,0 +1,1 @@
+-v --force --timestamp=none --sign - --entitlements /Users/thanadetdaunyai/DX212app/TaxifyApp/TaxifyApp/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Entitlements.xcent /Users/thanadetdaunyai/DX212app/TaxifyApp/TaxifyApp/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/TaxifyApp.app
